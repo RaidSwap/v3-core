@@ -1,22 +1,22 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity =0.7.6;
 
-import './interfaces/IUniswapV3Factory.sol';
+import './interfaces/IRaidswapV3Factory.sol';
 
-import './UniswapV3PoolDeployer.sol';
+import './RaidswapV3PoolDeployer.sol';
 import './NoDelegateCall.sol';
 
-import './UniswapV3Pool.sol';
+import './RaidswapV3Pool.sol';
 
-/// @title Canonical Uniswap V3 factory
-/// @notice Deploys Uniswap V3 pools and manages ownership and control over pool protocol fees
-contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegateCall {
-    /// @inheritdoc IUniswapV3Factory
+/// @title Canonical Raidswap V3 factory
+/// @notice Deploys Raidswap V3 pools and manages ownership and control over pool protocol fees
+contract RaidswapV3Factory is IRaidswapV3Factory, RaidswapV3PoolDeployer, NoDelegateCall {
+    /// @inheritdoc IRaidswapV3Factory
     address public override owner;
 
-    /// @inheritdoc IUniswapV3Factory
+    /// @inheritdoc IRaidswapV3Factory
     mapping(uint24 => int24) public override feeAmountTickSpacing;
-    /// @inheritdoc IUniswapV3Factory
+    /// @inheritdoc IRaidswapV3Factory
     mapping(address => mapping(address => mapping(uint24 => address))) public override getPool;
 
     constructor() {
@@ -31,7 +31,7 @@ contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegat
         emit FeeAmountEnabled(10000, 200);
     }
 
-    /// @inheritdoc IUniswapV3Factory
+    /// @inheritdoc IRaidswapV3Factory
     function createPool(
         address tokenA,
         address tokenB,
@@ -50,14 +50,14 @@ contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegat
         emit PoolCreated(token0, token1, fee, tickSpacing, pool);
     }
 
-    /// @inheritdoc IUniswapV3Factory
+    /// @inheritdoc IRaidswapV3Factory
     function setOwner(address _owner) external override {
         require(msg.sender == owner);
         emit OwnerChanged(owner, _owner);
         owner = _owner;
     }
 
-    /// @inheritdoc IUniswapV3Factory
+    /// @inheritdoc IRaidswapV3Factory
     function enableFeeAmount(uint24 fee, int24 tickSpacing) public override {
         require(msg.sender == owner);
         require(fee < 1000000);

@@ -1,26 +1,22 @@
 {
-  "name": "@uniswap/v3-core",
-  "description": "🦄 Core smart contracts of Uniswap V3",
+  "name": "@raidswap/v3-core",
+  "description": "Core smart contracts of Raidswap V3",
   "license": "BUSL-1.1",
   "publishConfig": {
     "access": "public"
   },
   "version": "1.0.1",
-  "homepage": "https://uniswap.org",
+  "homepage": "https://raidswap.finance",
   "keywords": [
-    "uniswap",
+    "raidswap",
     "core",
     "v3"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Uniswap/uniswap-v3-core"
-  },
   "files": [
     "contracts/interfaces",
     "contracts/libraries",
-    "artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json",
-    "artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json",
+    "artifacts/contracts/RaidswapV3Factory.sol/RaidswapV3Factory.json",
+    "artifacts/contracts/RaidswapV3Pool.sol/RaidswapV3Pool.json",
     "artifacts/contracts/interfaces/**/*.json",
     "!artifacts/contracts/interfaces/**/*.dbg.json"
   ],
